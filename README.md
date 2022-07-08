@@ -1,2 +1,2 @@
 # send-mail-demo
-Example hoe to generate and send a mail using Steampunk (SAP BTP ABAP Environment)
+Example how to generate and send a mail using Steampunk (SAP BTP ABAP Environment)
