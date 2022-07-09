@@ -31,11 +31,11 @@ SCC should look as follows in BTP Cockpit:
 
 Create a new Communication Arrangement based on scenario `SAP_COM_0548`. Within the Communication Arrangement create a new Communication System:
 
-![CS](/img/Mail-SCC.png)
+![CS](/img/Mail-CS.png)
 
 and maintain the user for Outbound Communication (for SMPT access).
 Resulting Communication Arrangement should look as follows:
 
-![CA](/img/Mail-SCC.png)
+![CA](/img/Mail-CA.png)
 
 Please do not create a Destination in BTP Cockpit for mail (deprecated approach in Steampunk – approach via Communication Arrangement is much easier).
