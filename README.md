@@ -23,11 +23,19 @@ Prerequisites:
 -	Configured Cloud Connector (SCC) for that SMPT server
 -	SCC is assigned to the respective BTP subaccount
 
+SCC should look as follows in BTP Cockpit:
+
+![SCC](/img/Mail-SCC.png)
+
 ## Setup the Communication Arrangement
 
 Create a new Communication Arrangement based on scenario `SAP_COM_0548`. Within the Communication Arrangement create a new Communication System:
 
+![CS](/img/Mail-SCC.png)
+
 and maintain the user for Outbound Communication (for SMPT access).
-Resulting Communication Arrangement looks as follows:
+Resulting Communication Arrangement should look as follows:
+
+![CA](/img/Mail-SCC.png)
 
 Please do not create a Destination in BTP Cockpit for mail (deprecated approach in Steampunk – approach via Communication Arrangement is much easier).
