@@ -1,8 +1,8 @@
 # send-mail-demo
-Example how to generate and send a mail using Steampunk ([SAP BTP ABAP Environment](https://community.sap.com/topics/btp-abap-environment))
+Example how to generate and send a mail using Steampunk ([SAP BTP ABAP Environment](https://community.sap.com/topics/btp-abap-environment)).
 
 # Implementation
-A small (abstract) utility class `ZCL_MAIL_GEN` is used to generated mails based on a simple textual replacement of predefined placeholders. In order to send mails, the released API is call as explained in the official [documentation](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/a3d3f38de12b430bb670e418e7e66bad.html?locale=en-US).
+A small (abstract) utility class `ZCL_MAIL_GEN` is used to generated mails based on a simple textual replacement of predefined placeholders. To send mails, the released API is called as explained in the official [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/output-management-sending-mails-using-smtp).
 The generation of html mails follows the layout recommendation to use html tables and inline css to support a broader variety of different mail clients.
 
 A concrete mail template class `ZCL_MAIL_GEN_MATERIAL` inherits from `ZCL_MAIL_GEN` and supports the generation of mails based on two textual placeholders (recipient and material).
