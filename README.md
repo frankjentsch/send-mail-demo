@@ -12,10 +12,12 @@ ADT class runner class `ZCL_MAIL_GEN_TEST` is used to generate an example mail b
 **Material Notification**
 
 Dear Mr. Mayer,
-
 Material **Screw 3x4** has been created.
-
 Best regards
+
+This example shows the generation via ABAP code. In the meanwhile, email templates can be now maintained in ADT as a dedicated transportable object type. Refer to [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/e-mail-templates) how to use ADT editor and how to refer to the email template in your ABAP code.
+
+The git repo contains also two other classes. `ZCL_MAIL_SIMPLE` is a Hello World like smallest example to generate a html mail. `ZCL_MAIL_SETUP_SHOW` outputs the current settings of the system outbound email configuration. The supported configuration options are explained in the [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/configuration-of-system-mail-outbound).  
 
 # How to setup SMPT mail connectivity based on an existing SMPT server
 Prerequisites:
