@@ -1,11 +1,10 @@
 CLASS zcl_mail_gen DEFINITION
-  PUBLIC
-  ABSTRACT.
+  PUBLIC ABSTRACT.
 
   PUBLIC SECTION.
     TYPES BEGIN OF placeholder_value.
-    TYPES placeholder  TYPE string.
-    TYPES actual_value TYPE string.
+    TYPES   placeholder  TYPE string.
+    TYPES   actual_value TYPE string.
     TYPES END OF placeholder_value.
 
     TYPES placeholder_values TYPE STANDARD TABLE OF placeholder_value WITH EMPTY KEY.
@@ -19,37 +18,38 @@ CLASS zcl_mail_gen DEFINITION
 
     METHODS send FINAL
       IMPORTING
-        sender         TYPE string
-        recipient      TYPE string
-        subject        TYPE string
+        sender      TYPE string
+        recipient   TYPE string
+        subject     TYPE string
       EXPORTING
-        error_occurred TYPE abap_bool
-        error_text     TYPE string.
+        mail_status TYPE cl_bcs_mail_message=>tys_email_status
+      RAISING
+        cx_bcs_mail.
 
   PROTECTED SECTION.
     TYPES placeholders TYPE STANDARD TABLE OF string WITH EMPTY KEY.
 
-    CONSTANTS BEGIN OF css_style .
-    CONSTANTS ci   TYPE string VALUE `style="padding: 0px 0px 10px 0px; font-family: Calibri, sans-serif; font-size: 11pt;"`  ##NO_TEXT.
-    CONSTANTS h    TYPE string VALUE `style="padding: 0px 0px 15px 0px; font-family: Calibri, sans-serif; font-size: 14pt; color: #f0ab00;"`  ##NO_TEXT.
-    CONSTANTS thl  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#F1F2F6;"`  ##NO_TEXT.
-    CONSTANTS thc  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#F1F2F6;"`  ##NO_TEXT.
-    CONSTANTS thr  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#F1F2F6;"`  ##NO_TEXT.
-    CONSTANTS tdl  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:left;"`  ##NO_TEXT.
-    CONSTANTS tdc  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:center;"`  ##NO_TEXT.
-    CONSTANTS tdr  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:right;"`  ##NO_TEXT.
-    CONSTANTS tdcg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#98FB98;"`  ##NO_TEXT.
-    CONSTANTS tdco TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#FFCC99;"`  ##NO_TEXT.
-    CONSTANTS tdcr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#FF3300;"`  ##NO_TEXT.
-    CONSTANTS tdlg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#98FB98;"`  ##NO_TEXT.
-    CONSTANTS tdlo TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#FFCC99;"`  ##NO_TEXT.
-    CONSTANTS tdlr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#FF3300;"`  ##NO_TEXT.
-    CONSTANTS tdrg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#98FB98;"`  ##NO_TEXT.
-    CONSTANTS tdro TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#FFCC99;"`  ##NO_TEXT.
-    CONSTANTS tdrr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#FF3300;"`  ##NO_TEXT.
-    CONSTANTS tdt  TYPE string VALUE `style="padding: 0px 0px 20px 0px;"`  ##NO_TEXT.
-    CONSTANTS f    TYPE string VALUE `style="padding: 0px 0px 10px 0px; font-family: Calibri, sans-serif; font-size: 11pt;"`  ##NO_TEXT.
-    CONSTANTS END OF css_style .
+    CONSTANTS BEGIN OF css_style.
+    CONSTANTS   ci   TYPE string VALUE `style="padding: 0px 0px 20px 0px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt;"`  ##NO_TEXT.
+    CONSTANTS   h    TYPE string VALUE `style="padding: 15px 0px 15px 0px; font-family: Aptos Light, Aptos, Calibri, sans-serif; font-size: 18pt; color: #0070F2;"`  ##NO_TEXT.
+    CONSTANTS   thl  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#F1F2F6;"`  ##NO_TEXT.
+    CONSTANTS   thc  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#F1F2F6;"`  ##NO_TEXT.
+    CONSTANTS   thr  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#F1F2F6;"`  ##NO_TEXT.
+    CONSTANTS   tdl  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:left;"`  ##NO_TEXT.
+    CONSTANTS   tdc  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:center;"`  ##NO_TEXT.
+    CONSTANTS   tdr  TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:right;"`  ##NO_TEXT.
+    CONSTANTS   tdcg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#98FB98;"`  ##NO_TEXT.
+    CONSTANTS   tdco TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#FFCC99;"`  ##NO_TEXT.
+    CONSTANTS   tdcr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:center; background-color:#FF3300;"`  ##NO_TEXT.
+    CONSTANTS   tdlg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#98FB98;"`  ##NO_TEXT.
+    CONSTANTS   tdlo TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#FFCC99;"`  ##NO_TEXT.
+    CONSTANTS   tdlr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:left; background-color:#FF3300;"`  ##NO_TEXT.
+    CONSTANTS   tdrg TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#98FB98;"`  ##NO_TEXT.
+    CONSTANTS   tdro TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#FFCC99;"`  ##NO_TEXT.
+    CONSTANTS   tdrr TYPE string VALUE `style="padding: 1px 5px 1px 5px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt; text-align:right; background-color:#FF3300;"`  ##NO_TEXT.
+    CONSTANTS   tdt  TYPE string VALUE `style="padding: 0px 0px 20px 0px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt;"`  ##NO_TEXT.
+    CONSTANTS   f    TYPE string VALUE `style="padding: 0px 0px 10px 0px; font-family: Aptos, Calibri, sans-serif; font-size: 11pt;"`  ##NO_TEXT.
+    CONSTANTS END OF css_style.
 
     METHODS get_supported_placeholders ABSTRACT
       RETURNING VALUE(placeholders) TYPE placeholders.
@@ -77,7 +77,7 @@ CLASS zcl_mail_gen IMPLEMENTATION.
 
   METHOD get_content.
 
-    DATA(html_body) = replace_placeholders( get_template_body( ) ).
+    FINAL(html_body) = replace_placeholders( get_template_body( ) ).
 
     html_content =
     |<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">| &&
@@ -102,33 +102,6 @@ CLASS zcl_mail_gen IMPLEMENTATION.
 
   ENDMETHOD.
 
-  METHOD send.
-
-    DATA(content) = get_content( subject ).
-
-    TRY.
-        DATA(mail) = cl_bcs_mail_message=>create_instance( ).
-        mail->set_sender( CONV #( sender ) ).
-        mail->add_recipient( CONV #( recipient ) ).
-        mail->set_subject( CONV #( subject ) ).
-        mail->set_main( cl_bcs_mail_textpart=>create_instance(
-            iv_content      = content
-            iv_content_type = 'text/html'
-        ) ).
-
-        mail->send( IMPORTING et_status = DATA(status) ).
-        LOOP AT status ASSIGNING FIELD-SYMBOL(<status>) WHERE status = 'E'.
-          error_occurred = abap_true.
-          error_text = <status>-recipient.
-        ENDLOOP.
-
-      CATCH cx_bcs_mail INTO DATA(x_mail).
-        error_occurred = abap_true.
-        error_text = x_mail->get_text( ).
-    ENDTRY.
-
-  ENDMETHOD.
-
   METHOD replace_placeholders.
 
     html_body = html_template_body.
@@ -136,6 +109,20 @@ CLASS zcl_mail_gen IMPLEMENTATION.
     LOOP AT m_placeholder_values ASSIGNING FIELD-SYMBOL(<placeholder_value>).
       html_body = replace( val = html_body sub = <placeholder_value>-placeholder with = <placeholder_value>-actual_value occ = 0 ).
     ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD send.
+
+    FINAL(content) = get_content( subject ).
+
+    FINAL(mail) = cl_bcs_mail_message=>create_instance( ).
+    mail->set_sender( CONV #( sender ) ).
+    mail->add_recipient( CONV #( recipient ) ).
+    mail->set_subject( CONV #( subject ) ).
+    mail->set_main( cl_bcs_mail_textpart=>create_text_html( content ) ).
+
+    mail->send( )->get_email_status( IMPORTING es_mail_status = mail_status ).
 
   ENDMETHOD.
 

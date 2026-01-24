@@ -1,8 +1,7 @@
 CLASS zcl_mail_gen_material DEFINITION
   PUBLIC
-  INHERITING FROM zcl_mail_gen
-  FINAL
-  CREATE PUBLIC .
+  INHERITING FROM zcl_mail_gen FINAL
+  CREATE PUBLIC.
 
   PUBLIC SECTION.
     CONSTANTS BEGIN OF placeholder.
@@ -14,10 +13,9 @@ CLASS zcl_mail_gen_material DEFINITION
       IMPORTING placeholder_values TYPE placeholder_values OPTIONAL.
 
   PROTECTED SECTION.
-    METHODS get_template_body REDEFINITION.
+    METHODS get_template_body          REDEFINITION.
     METHODS get_supported_placeholders REDEFINITION.
 
-  PRIVATE SECTION.
 ENDCLASS.
 
 
@@ -25,7 +23,7 @@ CLASS zcl_mail_gen_material IMPLEMENTATION.
 
   METHOD constructor.
 
-    super->constructor( placeholder_values = placeholder_values ).
+    super->constructor( placeholder_values ).
 
   ENDMETHOD.
 
