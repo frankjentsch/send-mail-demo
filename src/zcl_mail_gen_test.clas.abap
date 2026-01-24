@@ -24,10 +24,8 @@ CLASS zcl_mail_gen_test IMPLEMENTATION.
     TRY.
         mail_gen->send(
           EXPORTING
-*           sender      = 'noreply@...'
-*           recipient   = '...@...'
-            sender      = 'noreply+itapc@sap.com'
-            recipient   = 'frank.jentsch@sap.com'
+            sender      = 'noreply@...'
+            recipient   = '...@...'
             subject     = `Material creation notification`
           IMPORTING
             mail_status = FINAL(mail_status)
