@@ -1,6 +1,6 @@
 # send-mail-demo
 
-This example shows you how to generate and send email using Steampunk ([SAP Business AI Platform, ABAP environment](https://community.sap.com/topics/btp-abap-environment)).
+This example shows you how to generate and send email using Steampunk ([SAP Business AI Platform, ABAP environment](https://pages.community.sap.com/topics/business-ai-platform-abap-environment)).
 
 ## Implementation
 
