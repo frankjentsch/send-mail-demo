@@ -1,43 +1,52 @@
 # send-mail-demo
-Example how to generate and send a mail using Steampunk ([SAP BTP ABAP Environment](https://community.sap.com/topics/btp-abap-environment)).
 
-# Implementation
-A small (abstract) utility class `ZCL_MAIL_GEN` is used to generated mails based on a simple textual replacement of predefined placeholders. To send mails, the released API is called as explained in the official [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/output-management-sending-mails-using-smtp).
-The generation of html mails follows the layout recommendation to use html tables and inline css to support a broader variety of different mail clients.
+This example shows you how to generate and send email using Steampunk ([SAP Business AI Platform, ABAP environment](https://community.sap.com/topics/btp-abap-environment)).
 
-A concrete mail template class `ZCL_MAIL_GEN_MATERIAL` inherits from `ZCL_MAIL_GEN` and supports the generation of mails based on two textual placeholders (recipient and material).
+## Implementation
 
-ADT class runner class `ZCL_MAIL_GEN_TEST` is used to generate an example mail based on `ZCL_MAIL_GEN_MATERIAL`. The mail content is a formatted version of 
+The abstract utility class `ZCL_MAIL_GEN` generates email by replacing predefined text placeholders. To send email, the example calls the released API described in the official [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/output-management-sending-mails-using-smtp).
+
+The HTML email layout uses tables and inline CSS for compatibility with a wider range of email clients.
+
+The concrete email template class `ZCL_MAIL_GEN_MATERIAL` inherits from `ZCL_MAIL_GEN` and generates email using two text placeholders: recipient and material.
+
+You can run `ZCL_MAIL_GEN_TEST` with the ABAP Development Tools (ADT) class runner to generate an example email based on `ZCL_MAIL_GEN_MATERIAL`. The email contains a formatted version of the following text:
 
 **Material Notification**
 
 Dear Mr. Mayer,
+
 Material **Screw 3x4** has been created.
+
 Best regards
 
-This example shows the generation via ABAP code. In the meanwhile, email templates can be now maintained in ADT as a dedicated transportable object type. Refer to [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/e-mail-templates) how to use ADT editor and how to refer to the email template in your ABAP code.
+This example generates email using ABAP code. You can also maintain email templates in ADT as a dedicated transportable object type. See the [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/e-mail-templates) for instructions on using the ADT editor and referencing email templates in your ABAP code.
 
-The git repo contains also two other classes. `ZCL_MAIL_SIMPLE` is a Hello World like smallest example to generate a html mail. `ZCL_MAIL_SETUP_SHOW` outputs the current settings of the system outbound email configuration. The supported configuration options are explained in the [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/configuration-of-system-mail-outbound).  
+The repository also contains two other classes:
 
-# How to setup SMPT mail connectivity based on an existing SMPT server
-Prerequisites:
--	SMPT server
--	Configured Cloud Connector (SCC) for that SMPT server
--	SCC is assigned to the respective BTP subaccount
+- `ZCL_MAIL_SIMPLE` provides a minimal, Hello World-style example of generating HTML email.
+- `ZCL_MAIL_SETUP_SHOW` displays the current system outbound email settings. See the [documentation](https://help.sap.com/docs/sap-btp-abap-environment/abap-environment/configuration-of-system-mail-outbound) for the supported configuration options.
 
-SCC should look as follows in BTP Cockpit:
+## Set up email connectivity with an existing SMTP server
 
-![SCC](/img/Mail-SCC.png)
+### Prerequisites
 
-## Setup the Communication Arrangement
+- An SMTP server
+- An SAP Cloud Connector (SCC) configured for that SMTP server
+- The Cloud Connector assigned to the relevant SAP Business AI Platform subaccount
 
-Create a new Communication Arrangement based on scenario `SAP_COM_0548`. Within the Communication Arrangement create a new Communication System:
+In the SAP BTP Cockpit, your Cloud Connector configuration should look like this:
 
-![CS](/img/Mail-CS.png)
+![Cloud Connector configuration in the SAP BTP Cockpit](/img/Mail-SCC.png)
 
-and maintain the user for Outbound Communication (for SMPT access).
-Resulting Communication Arrangement should look as follows:
+### Set up the communication arrangement
 
-![CA](/img/Mail-CA.png)
+Create a communication arrangement based on scenario `SAP_COM_0548`. Within the communication arrangement, create a communication system:
 
-Please do not create a Destination in BTP Cockpit for mail (deprecated approach in Steampunk – approach via Communication Arrangement is much easier).
+![Communication system configuration](/img/Mail-CS.png)
+
+Configure the outbound communication user for SMTP access. The resulting communication arrangement should look like this:
+
+![Communication arrangement configuration](/img/Mail-CA.png)
+
+Do not create a destination for email in the SAP BTP Cockpit. That approach is deprecated in Steampunk; use a communication arrangement instead.
